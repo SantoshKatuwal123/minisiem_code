@@ -1,0 +1,102 @@
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #3b82f6;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --success-color: #10b981;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: var(--card-bg);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 { margin: 0; font-size: 1.5rem; }
+
+.container {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 2rem;
+    height: 100%;
+    overflow: hidden;
+}
+
+.stats-panel {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 1rem;
+}
+
+.stat-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    flex: 1;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.panel {
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.panel h2 { margin-top: 0; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
+
+.log-list, .alert-list {
+    overflow-y: auto;
+    flex: 1;
+}
+
+.log-item, .alert-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid #334155;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+.log-item:last-child, .alert-item:last-child { border-bottom: none; }
+
+.log-meta { color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 0.25rem; }
+
+.badge {
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+.badge-info { background-color: rgba(59, 130, 246, 0.2); color: var(--accent-color); }
+.badge-warn { background-color: rgba(245, 158, 11, 0.2); color: var(--warning-color); }
+.badge-error { background-color: rgba(239, 68, 68, 0.2); color: var(--danger-color); }
+
+.alert-item { border-left: 4px solid var(--danger-color); background-color: rgba(239, 68, 68, 0.1); margin-bottom: 0.5rem; border-radius: 0 0.25rem 0.25rem 0;}

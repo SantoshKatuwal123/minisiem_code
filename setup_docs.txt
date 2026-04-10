@@ -1,0 +1,89 @@
+BACKEND FIRST:
+
+1. Open folder **minisiem** in VS Code
+
+2. Creating virtual environment
+
+   **For Windows (PowerShell):**
+
+   ```
+   python -m venv venv
+   ```
+
+   **Activate virtual environment (Windows):**
+
+   ```
+   venv\Scripts\activate
+   ```
+
+   **For Linux / Mac:**
+
+   ```
+   python3 -m venv venv
+   ```
+
+   **Activate virtual environment (Linux / Mac):**
+
+   ```
+   source venv/bin/activate
+   ```
+
+3. Installing required packages from requirements.txt
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+4. Running BACKEND server
+
+   ```
+   fastapi dev
+   ```
+
+
+Notes:
+    for api docs  : localhost:8000/docs
+
+    if any pacage install error occured
+        - install that package by
+
+        ```
+        pip install package_name
+        ```
+
+
+
+FRONTEND SETUP:
+
+1. Open minisiem_admin on vscode
+2. Install all the packages 
+
+    ```
+    npm install
+    ```
+
+2. Start the server
+
+    ```
+    npm run dev
+    ```
+
+3. In browser (chrome/brave)
+
+    open to link: localhost:3000
+
+
+
+
+
+
+
+
+FUNCTIONAL PART FRONTEND:
+
+1. LOGIN
+2. REGISTER
+3. AUTHENTICATION
+4. DASHBOARD (GET)
+5. ALERT (GET)
+6. LOGS (GET)

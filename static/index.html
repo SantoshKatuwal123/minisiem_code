@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini SIEM Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🛡️ Mini SIEM</h1>
+        <div>
+            <span class="badge badge-info">System Active</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-panel">
+            <div class="stat-card">
+                <div>Total Logs</div>
+                <div class="stat-value" id="total-logs">0</div>
+            </div>
+            <div class="stat-card">
+                <div>Active Alerts</div>
+                <div class="stat-value" id="total-alerts">0</div>
+            </div>
+            <div class="stat-card">
+                <div>Sources Monitored</div>
+                <div class="stat-value">Local</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>Recent Alerts</h2>
+            <div id="alerts-container" class="alert-list">
+                <!-- Alerts via JS -->
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>Live Log Feed</h2>
+            <div id="logs-container" class="log-list">
+                <!-- Logs via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
