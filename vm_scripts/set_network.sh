@@ -1,34 +1,27 @@
-cat << 'EOF' > set_network.sh
 #!/bin/bash
 
-# 1. Ask the user for the new IP
-echo "Current Network Configuration Update"
-read -p "Enter the Windows SIEM IP Address (e.g., 192.168.1.75): " NEW_IP
+echo "------------------------------------------"
+echo "   MINI-SIEM NETWORK UPDATER"
+echo "------------------------------------------"
+read -p "Enter the new Windows SIEM IP: " NEW_IP
 
 if [[ ! $NEW_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    echo "[!] Invalid IP format. Please try again."
+    echo "[!] Invalid IP format. Exiting."
     exit 1
 fi
 
-# 2. Define the files that need updating
-FILES=("run_siem.sh" "ingestor.py")
+if [ -f "ingestor.py" ]; then
+    TARGET_INGESTOR="ingestor.py"
+    TARGET_RUNNER="run_siem.sh"
+elif [ -f "vm_scripts/ingestor.py" ]; then
+    TARGET_INGESTOR="vm_scripts/ingestor.py"
+    TARGET_RUNNER="vm_scripts/run_siem.sh"
+else
+    echo "[!] Error: Could not find ingestor.py"
+    exit 1
+fi
 
-# 3. Use sed to replace any IP-like pattern starting with http://
-# This finds http:// followed by numbers and dots and replaces it with the new one
-echo "[*] Updating configuration files..."
-
-for FILE in "${FILES[@]}"; do
-    if [ -f "$FILE" ]; then
-        # Search for the BASE_URL pattern and swap the IP
-        sed -i -E "s|http://[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:8000|http://$NEW_IP:8000|g" "$FILE"
-        echo "[+] Updated $FILE"
-    else
-        echo "[-] $FILE not found, skipping."
-    fi
-done
-
-echo "[*] Network update complete. New target: http://$NEW_IP:8000"
-EOF
-
-# Make it executable
-chmod +x set_network.sh
+echo "[*] Applying IP $NEW_IP to scripts..."
+sed -i -E "s|http://[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:8000|http://$NEW_IP:8000|g" "$TARGET_INGESTOR"
+sed -i -E "s|http://[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:8000|http://$NEW_IP:8000|g" "$TARGET_RUNNER"
+echo "[+] Success! New Target: http://$NEW_IP:8000"
